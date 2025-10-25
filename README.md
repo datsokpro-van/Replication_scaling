@@ -1,4 +1,4 @@
-# Домашнее задание к занятию "`Репликация и масштабирование. Часть 1`" - `Дацко Иван`
+]# Домашнее задание к занятию "`Репликация и масштабирование. Часть 1`" - `Дацко Иван`
 
 
 ### Инструкция по выполнению домашнего задания
@@ -70,14 +70,15 @@ Master-master сложнее, но обеспечивает высокую до�
 Пользователь repl пересоздан с IDENTIFIED WITH mysql_native_password для совместимости без SSL.
 На slave выполнены команды:
 
-```bash
+  ```bash
 STOP REPLICA;
 CHANGE REPLICATION SOURCE TO
   SOURCE_HOST='mysql_master',
   SOURCE_USER='repl',
   SOURCE_PASSWORD='slavepass',
   SOURCE_SSL=0;
-START REPLICA;
+START REPLICA;.
+
 
 
 
@@ -90,19 +91,22 @@ START REPLICA;
 CREATE DATABASE test_db;
 USE test_db;
 CREATE TABLE test_table (id INT PRIMARY KEY, name VARCHAR(50));
-INSERT INTO test_table VALUES (1, 'Master Record');
+INSERT INTO test_table VALUES (1, 'Master Record');.
+
 
 ##### На slave подтверждено наличие данных:
 
 ```bash
 SHOW DATABASES LIKE 'test_db';
-SELECT * FROM test_db.test_table;
+SELECT * FROM test_db.test_table;.
+
 
 
 ##### Вывод SHOW REPLICA STATUS\G показывает:
 Replica_IO_Running: Yes
 Replica_SQL_Running: Yes
-Отсутствие ошибок репликации.
+Отсутствие ошибок репликации..
+
 
 
 ##### zadanie2
