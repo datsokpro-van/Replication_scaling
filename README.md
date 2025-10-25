@@ -62,7 +62,7 @@ Master-master сложнее, но обеспечивает высокую до�
   ```bash
   docker build -t mysql_master -f Dockerfile.master .
   docker build -t mysql_slave -f Dockerfile.slave .
-
+  ```
 ### 3. Настройка репликации
 
 После полной инициализации master:
@@ -77,29 +77,26 @@ CHANGE REPLICATION SOURCE TO
   SOURCE_USER='repl',
   SOURCE_PASSWORD='slavepass',
   SOURCE_SSL=0;
-START REPLICA;.
-
-
-
-
+START REPLICA;
+  ```
 
 ### 4. Проверка работы
 
 ##### На master создана тестовая БД и таблица:
 
-```bash
+   ```bash
 CREATE DATABASE test_db;
 USE test_db;
 CREATE TABLE test_table (id INT PRIMARY KEY, name VARCHAR(50));
 INSERT INTO test_table VALUES (1, 'Master Record');.
-
+```
 
 ##### На slave подтверждено наличие данных:
 
 ```bash
 SHOW DATABASES LIKE 'test_db';
 SELECT * FROM test_db.test_table;.
-
+```
 
 
 ##### Вывод SHOW REPLICA STATUS\G показывает:
